@@ -89,7 +89,7 @@
     // tyearmilsec="0"+tyearmilsec;
     //else
     // tyearmilsec=tyearmilsec;
- 
+
     times.innerHTML="Left time of "+nowyear+" [h:m:s]<br>"+yearhour+":"+tyearmin+":"+tyearsec /*+":"+tyearmilsec*/ +" ("+(yearhour*60*60+yearmin*60+yearsec)+" s)" /*+"<br><br>"+"Left "+nowyear+" to Millisecond<br>"+(yearhour*60*60*100+yearmin*60*100+yearsec*100+Math.round(yearmilsec))*/;
     graph.innerHTML="<table width=180 border=0 style='border-collapse:collapse'><tr><td width="+Math.round((yearhour*60*60+yearmin*60+yearsec)/315360)+"% bgcolor=blue>"+"</td><td align=right width="+(100-Math.round((yearhour*60*60+yearmin*60+yearsec)/315360))+"%>　</td></tr></table>"+((yearhour*60*60*100+yearmin*60*100+yearsec*100 /*+yearmilsec*/ )/31536000).toFixed(6)+" %";
    }
