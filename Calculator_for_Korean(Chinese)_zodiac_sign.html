@@ -1,0 +1,18 @@
+<center>
+  Input a year : <input type="text" id="tb_year" value="2000">
+  <button onclick="print_ganji()">Calculate!</button>
+  <script language="javascript">
+    var cheongan = ['Kyeong(White)', 'Sin(White)', 'Im(Black)', 'Kye(Black)', 'Kap(Blue)', 'Eul(Blue)', 'Byeong(Red)', 'Jeong(Red)', 'Mu(Gold)', 'Ki(Gold)'];
+    var jiji = ['Jin(Dragon)', 'Sa(Snake)', 'Wo(Horse)', 'Mi(Sheep)', 'Sin(Monkey)', 'Yu(Chicken)', 'Sool(Dog)', 'Hae(Pig)', 'Ja(Mouse)', 'Choock(Cow)', 'In(Tiger)', 'Myo(Rabbit)'];
+
+    function print_ganji() {
+      var year = document.getElementById("tb_year").value;
+      var mod = (year-2000) % 12;
+      if(mod<0){
+        mod += 12;
+      }
+      document.getElementById("result").innerHTML = "Result: "+year+" is "+cheongan[year % 10]+jiji[mod]+".";
+    }
+  </script>
+  <p id="result" align="center"></p>
+</center>
