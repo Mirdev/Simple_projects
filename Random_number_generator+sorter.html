@@ -1,0 +1,28 @@
+<html>
+ <head>
+  <title>Random</title>
+ </head>
+ <body>
+  <script language=javascript>
+   var tmp;
+   ar = new Array(16);
+   for(i=0 ; i<16 ; i++){
+    ar[i]=Math.round(Math.random()*100);
+   }
+   for(i=0 ; i<15 ; i++){
+    for(j=0 ; j<15-i ; j++){
+     if(ar[j]>ar[j+1]){
+      tmp = ar[j];
+      ar[j] = ar[j+1];
+      ar[j+1] = tmp;
+     }
+    }
+   }
+   for(i=1 ; i<17 ; i++){
+    document.write(ar[i-1]+"/");
+    if(!(i%4))
+     document.write("/");
+   }
+  </script>
+ </body>
+</html>
