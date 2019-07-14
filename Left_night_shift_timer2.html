@@ -37,9 +37,9 @@
     else
      spent_time = 0;
     left_time = 57600-spent_time;
-    lhour = Math.round(left_time/60/60);
-    lmin  = Math.round(left_time/60-lhour*60);
-    lsec  = left_time-lhour*60*60-lmin*60+30;
+    lhour = Math.floor(left_time/60/60);
+    lmin  = Math.floor(left_time/60-lhour*60);
+    lsec  = left_time-lhour*60*60-lmin*60;
    }
    var thour;
    var tmin;
