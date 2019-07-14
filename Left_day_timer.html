@@ -1,0 +1,57 @@
+<html>
+ <head>
+  <title>Day Countdown Timer</title>
+  <style type="text/css">
+   table {
+    border-style:solid;
+    border-width:1px;
+    border-color:blue;
+   }
+  </style>
+  <script language="javascript">
+   var now;
+   var lhour;
+   var lmin;
+   var lsec;
+   function start(){
+    timer();
+    setInterval('display_timer()', 1);
+    setInterval('timer()', 500);
+   }
+   function timer(){
+    now = new Date();
+    lhour = 24-now.getHours();
+    lmin  = 60-now.getMinutes();
+    lsec  = 60-now.getSeconds();
+   }
+   var thour;
+   var tmin;
+   var tsec;
+   function display_timer(){
+    if(lhour<10)
+     thour="0"+lhour;
+    else
+     thour=lhour;
+    if(lmin<10)
+     tmin="0"+lmin;
+    else
+     tmin=lmin;
+    if(lsec<10)
+     tsec="0"+lsec;
+    else
+     tsec=lsec;
+
+    var total_sec = lhour*60*60+lmin*60+lsec;
+    var sec_ratio = total_sec/86400*100;
+    times.innerHTML="Left time of "+(now.getMonth()+1)+"/"+now.getDate()+" [h:m:s]<br>"+thour+":"+tmin+":"+tsec+" ("+total_sec+" s)";
+    graph.innerHTML="<table width=180 border=0 style='border-collapse:collapse'><tr><td width="+sec_ratio+"% bgcolor=blue></td><td align=right width="+(100-sec_ratio)+"%>　</td></tr></table>"+sec_ratio.toFixed(6)+" %";
+   }
+  </script>
+ </head>
+ <body onload="start()">
+  <center>
+   <span id=times></span><br>
+   <span id=graph></span>
+  </center>
+ </body>
+</html>
