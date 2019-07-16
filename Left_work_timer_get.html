@@ -1,0 +1,67 @@
+<html>
+ <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Night Countdown Timer</title>
+  <style>
+   #graph{
+     border: 1px solid blue;
+     height: 20px;
+     width: 180px;
+     text-align: left;
+   }
+  </style>
+  <script language="javascript">
+   var now, hour, min, sec, work_time, left_time, lhour, lmin, lsec, thour, tmin, tsec, time_ratio;
+   var setimes = location.href.split('?')[1].split('&');
+   var start_time = setimes[0]*1;
+   var end_time = setimes[1]*1;
+   function start(){
+    timer();
+    setInterval('display_timer()', 1);
+    setInterval('timer()', 500);
+   }
+   function timer(){
+    now = new Date();
+    hour = now.getHours();
+    min = now.getMinutes();
+    sec = now.getSeconds();
+    work_time = end_time-start_time
+    if(end_time<start_time){
+     work_time += 24;
+     if(hour+min/60 <= end_time)
+      left_time = (24-start_time)+hour+min/60+sec/60/60;
+     else if(hour+min/60 >= start_time)
+      left_time = hour+min/60+sec/60/60-start_time;
+     else
+      left_time = work_time;
+    }
+    else if(hour+min/60 >= start_time && hour+min/60 <= end_time)
+     left_time = work_time-hour-min/60-sec/60/60+start_time;
+    else
+     left_time = work_time;
+    lhour = Math.floor(left_time);
+    lmin  = Math.floor((left_time-lhour)*60);
+    lsec  = Math.round(((left_time-lhour)*60-lmin)*60);
+   }
+   function display_timer(){
+    if(lhour<10) thour="0"+lhour;
+    else thour=lhour;
+    if(lmin<10) tmin="0"+lmin;
+    else tmin=lmin;
+    if(lsec<10) tsec="0"+lsec;
+    else tsec=lsec;
+    time_ratio = left_time/work_time*100;
+    times.innerHTML="Left time of Night Shift Work [h:m:s]<br>"+thour+":"+tmin+":"+tsec+" ("+Math.round(left_time*60*60)+" s)";
+    graph.innerHTML="<div style='background: blue; height: 20px; width: "+time_ratio+"%;'></div>";
+     percent.innerHTML=time_ratio.toFixed(6)+" %"
+   }
+  </script>
+ </head>
+ <body onload="start()">
+  <center>
+   <span id=times></span><br>
+   <div id=graph></div>
+   <span id=percent></span>
+  </center>
+ </body>
+</html>
