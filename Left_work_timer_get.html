@@ -28,14 +28,14 @@
     work_time = end_time-start_time
     if(end_time<start_time){
      work_time += 24;
-     if(hour+min/60 <= end_time)
+     if(hour+min/60 < end_time)
       left_time = (24-start_time)+hour+min/60+sec/60/60;
      else if(hour+min/60 >= start_time)
       left_time = hour+min/60+sec/60/60-start_time;
      else
       left_time = work_time;
     }
-    else if(hour+min/60 >= start_time && hour+min/60 <= end_time)
+    else if(hour+min/60 >= start_time && hour+min/60 < end_time)
      left_time = work_time-hour-min/60-sec/60/60+start_time;
     else
      left_time = work_time;
