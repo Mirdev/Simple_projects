@@ -1,7 +1,7 @@
 <html>
  <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Night Countdown Timer</title>
+  <title>Work time Countdown Timer</title>
   <style>
    #graph{
      border: 1px solid blue;
@@ -51,7 +51,7 @@
     if(lsec<10) tsec="0"+lsec;
     else tsec=lsec;
     time_ratio = left_time/work_time*100;
-    times.innerHTML="Left time of Night Shift Work [h:m:s]<br>"+thour+":"+tmin+":"+tsec+" ("+Math.round(left_time*60*60)+" s)";
+    times.innerHTML="Left time of Work [h:m:s]<br>"+thour+":"+tmin+":"+tsec+" ("+Math.round(left_time*60*60)+" s)";
     graph.innerHTML="<div style='background: blue; height: 20px; width: "+time_ratio+"%;'></div>";
      percent.innerHTML=time_ratio.toFixed(6)+" %"
    }
