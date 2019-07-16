@@ -11,15 +11,10 @@
    }
   </style>
   <script language="javascript">
-   var now, hour, min, sec;
-   var spent_sec, left_sec;
-   var lhour, lmin, lsec;
-   var times = location.href.split('?')[1].split('&');
-   var start_time = times[0]*1;
-   var end_time = times[1]*1;
-   var total_sec;
-   var thour, tmin, tsec;
-   var sec_ratio;
+   var now, hour, min, sec, spent_sec, left_sec, lhour, lmin, lsec, total_sec, thour, tmin, tsec, sec_ratio;
+   var setimes = location.href.split('?')[1].split('&');
+   var start_time = setimes[0]*1;
+   var end_time = setimes[1]*1;
    function start(){
     timer();
     setInterval('display_timer()', 1);
