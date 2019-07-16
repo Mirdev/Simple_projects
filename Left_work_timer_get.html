@@ -1,0 +1,65 @@
+<html>
+ <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Night Countdown Timer</title>
+  <style>
+   #graph{
+     border: 1px solid blue;
+     height: 20px;
+     width: 180px;
+     text-align: left;
+   }
+  </style>
+  <script language="javascript">
+   var now, hour, min, sec;
+   var spent_sec, left_sec;
+   var lhour, lmin, lsec;
+   var start_time = request.getParameter("s");
+   var end_time = request.getParameter("e");
+   var total_sec;
+   var thour, tmin, tsec;
+   var sec_ratio;
+   function start(){
+    timer();
+    setInterval('display_timer()', 1);
+    setInterval('timer()', 500);
+   }
+   function timer(){
+    now = new Date();
+    hour = now.getHours();
+    min = now.getMinutes();
+    sec = now.getSeconds();
+    if(hour+min/60 < end_time)
+     spent_sec = (24-start_time)*60*60+hour*60*60+min*60+sec;
+    else if(hour+min/60 > start_time)
+     spent_sec = hour*60*60+min*60+sec-start_time*60*60;
+    else
+     spent_sec = 0;
+    total_sec = (24-start_time+end_time)*60*60
+    left_sec = total_sec-spent_sec;
+    lhour = Math.floor(left_sec/60/60);
+    lmin  = Math.floor(left_sec/60-lhour*60);
+    lsec  = left_sec-lhour*60*60-lmin*60;
+   }
+   function display_timer(){
+    if(lhour<10) thour="0"+lhour;
+    else thour=lhour;
+    if(lmin<10) tmin="0"+lmin;
+    else tmin=lmin;
+    if(lsec<10) tsec="0"+lsec;
+    else tsec=lsec;
+    sec_ratio = left_sec/total_sec*100;
+    times.innerHTML="Left time of Night Shift Work [h:m:s]<br>"+thour+":"+tmin+":"+tsec+" ("+left_sec+" s)";
+    graph.innerHTML="<div style='background: blue; height: 20px; width: "+sec_ratio+"%;'></div>";
+    percent.innerHTML=sec_ratio.toFixed(6)+" %"
+   }
+  </script>
+ </head>
+ <body onload="start()">
+  <center>
+   <span id=times></span><br>
+   <div id=graph></div>
+   <span id=percent></span>
+  </center>
+ </body>
+</html>
