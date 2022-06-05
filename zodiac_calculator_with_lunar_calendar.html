@@ -1,0 +1,49 @@
+<!--이전 버전의 업그레이드판. 천간지지는 음력을 기준으로 변화하기에 음력 1/1일에 해당하는 양력을 알아내어 천간지지년도의 양력기준까지 알려준다.-->
+
+<meta charset="UTF-8">
+<p style="text-align: center;"><b><span style="color: #ff0000;">여기에 입력 </span></b><b><span style="color: #ff0000;">vvv</span></b><b><span style="color: #ff0000;"> 후 '계산!' 버튼을 눌러 주세요!</span></b></p>
+
+<center>연도입력 : <input id="tb_year" type="text" value="2000" /> <button onclick="loadDoc()">계산!</button>
+
+<script>
+    var cheongan = ['경', '신', '임', '계', '갑', '을', '병', '정', '무', '기'];
+    var cheongan_kor = ['흰', '흰', '검은', '검은', '푸른', '푸른', '붉은', '붉은', '황금', '황금'];
+    var jiji = ['진', '사', '오', '미', '신', '유', '술', '해', '자', '축', '인', '묘'];
+    var jiji_kor = [' 용', ' 뱀', ' 말', ' 양', ' 원숭이', ' 닭', ' 개', ' 돼지', ' 쥐', ' 소', ' 호랑이', ' 토끼'];
+
+    function loadDoc() {
+      document.getElementById("result").innerHTML = "<center>데이터를 불러오는 중입니다...</center>";
+      var year = document.getElementById("tb_year").value;
+      var req = new XMLHttpRequest();
+      var url = "https://cors-ells.herokuapp.com/http://apis.data.go.kr/B090041/openapi/service/LrsrCldInfoService/getSolCalInfo?lunYear="+year+"&lunMonth=01&lunDay=01&ServiceKey=공공데이터포털키";
+      req.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          myFunction(this);
+        }
+      };
+      req.open("GET", url, true);
+      req.send();
+    }
+
+    function myFunction(xml) {
+      var xmlDoc = xml.responseXML;
+      var solMonth = xmlDoc.getElementsByTagName("solMonth")[0].firstChild.data;
+      var solDay = xmlDoc.getElementsByTagName("solDay")[0].firstChild.data;
+      print_ganji(solMonth, solDay);
+    }
+
+    function print_ganji(solMonth, solDay) {
+      var year = document.getElementById("tb_year").value;
+      var mod = (year-2000) % 12;
+      var mod_1 = (year-2000-1) % 12;
+      if(mod<0){
+        mod += 12;
+      }
+      if(mod_1<0){
+        mod_1 += 12;
+      }
+      document.getElementById("result").innerHTML = "<pre>계산결과 "+year+"년(양력 "+solMonth+"월 "+solDay+"일 이후(*이전은 "+cheongan[(year-1) % 10]+jiji[mod_1]+"년))은 <br> -천간지지: "+cheongan[year % 10]+jiji[mod]+"년<br> -띠: "+cheongan_kor[year % 10]+jiji_kor[mod]+"<br> -서기년도: "+year+"년<br> -단기년도: "+(+year+2333)+"년<br>입니다.</pre>"
+    }
+</script>
+</center>
+<p id="result" style="text-align: left;"><br /><br /><br /><br /><br /></p>
