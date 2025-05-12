@@ -1,5 +1,5 @@
 // Extended version with search statistics: total tries, combinations (nCr), and execution time tracking
-//For windows visual studio
+// For windows visual studio
 
 //This 'Tap to on' game is simillar with Bright.
 //However, they had more functional tiles such as one tap to turn on every bulb in one line, cross, and so on.
