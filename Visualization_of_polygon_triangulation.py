@@ -1,5 +1,8 @@
 # Visualizes a regular polygon and highlights its triangulation from fixed vertices.
 
+import numpy as np
+import matplotlib.pyplot as plt
+
 n = 4
 size = 6
 
