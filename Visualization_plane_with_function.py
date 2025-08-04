@@ -12,8 +12,11 @@ for i, x in enumerate(np.linspace(0.0, 2*np.pi, 200)):
     ax.cla()
     ax.set_xticks([-1,0,1])
     ax.set_yticks([-1, 0, 1])
+    ax.set_yticklabels(['--i', '0', 'i'])
     ax.set_xlim(-1.5, 1.5)
     ax.set_ylim(-1.5, 1.5)
+    ax.text(0.02, 1.55, 'Im', ha='center', va='bottom', fontsize=12)
+    ax.text(1.57, 0, 'Re', ha='left', va='center', fontsize=12)
     ax.set_aspect('equal')
 
     ax.plot([-1.5, 1.5], [0, 0], color='black', linewidth=1)
