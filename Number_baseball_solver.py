@@ -1,3 +1,9 @@
+# Entropy ver has approximately 0.6 fewer turns on average than naive Bayesian ver(light ver)
+# Adding heuristics(like fixed approximation for 3 turns) makes entropy-based solver faster
+# 0.x secs difference between two versions in this version(originally, the time difference was much larger)
+# Therefore, the faster (or light) version is effectively a legacy version, but it has been deliberately retained for its probabilistic approach, which allows it to reach results more quickly (naive Bayesian).
+
+
 import random
 import time
 import math
